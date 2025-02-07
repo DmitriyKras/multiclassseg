@@ -1,9 +1,7 @@
-import yaml
 import cv2
 import argparse
 from models import EfficientUnet, ESNet
 import torch
-from typing import Dict
 import numpy as np
 
 
@@ -38,17 +36,12 @@ if __name__ == '__main__':
                         help="""Number of classes in dataset""")
     parser.add_argument('--img', type=int, default=320, 
                         help='inference image size (pixels)')
-    parser.add_argument('--data', type=str, default='data/data.yaml', 
-                        help='dataset.yaml path')
     parser.add_argument('--weights', type=str, default='weights/effunet/best.pt',
                         help='path to weight file to validate')
     parser.add_argument('--video', type=str, default='0',
                         help='path to video file for inference or 0 for webcam')
     
     args = parser.parse_args()
-
-    with open(args.data, 'r') as f:
-        data = yaml.full_load(f)
 
     ### GET MODEL ###
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")  # get cuda device
@@ -84,7 +77,7 @@ if __name__ == '__main__':
 
         mask = postprocess(output, colors)
 
-        frame = cv2.addWeighted(frame, 0.8, mask, 0.2)
+        frame = cv2.addWeighted(frame, 0.7, mask, 0.3, 0)
         cv2.imshow('Test video', frame)
     
     cv2.destroyAllWindows()

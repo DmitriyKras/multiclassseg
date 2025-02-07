@@ -1,4 +1,4 @@
-# multylabelseg
+# multiclassseg
 
 В репозитории содержатся скрипты для обучения, валидации и экспорта в onnx двух архитектур для семантической сегментации.
 Использованные модели:
@@ -7,6 +7,10 @@
 - [ESNet](https://github.com/xiaoyufenfei/ESNet)
 
 Репозиторий базируется на моей [работе](https://github.com/DmitriyKras/segmentation_models) по сегментационным моделям на PyTorch. Loss функции для сегментации взяты [отсюда](https://github.com/qubvel-org/segmentation_models.pytorch).
+
+Перед использованием установить зависимости:
+
+`pip install -r requirments.txt`
 
 ## Dataset preparation
 
@@ -64,7 +68,7 @@
 
 Результаты представлены в таблице ниже:
 
-| Модель              | mIoU (whole body) | mIoU (whole body) | mIoU (whole body) | Веса |
+| Модель              | mIoU (whole body) | mIoU (up and down body) | mIoU (body parts) | Веса |
 |---------            | :---------------: | :---------------: | :---------------: | -----|
 | EfficientUNet B0    | 0.393             | 0.253             | 0.181             | [ссылка](https://drive.google.com/file/d/1rmlujjSeSEGJQXZEboKzv3ImF3xb4uZv/view?usp=sharing) |
 | ESNet               | 0.372             | 0.240             | 0.170             | [ссылка](https://drive.google.com/file/d/1jRaVothrh8Np6JcMDzx65mOqX7Fv1mh2/view?usp=sharing) |
@@ -76,10 +80,7 @@
 
 Команда для инференса:
 
-`python3`
-
-Пример инференса представлен на изображении ниже:
-![Inference](/assets/inference.png)
+`python3 inference.py --model esnet --n-classes 7 --img 320 --weights weights/esnet/esnet_best.pt --video 0`
 
 ## Thoughts
 

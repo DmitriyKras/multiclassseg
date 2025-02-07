@@ -1,0 +1,16 @@
+path: /home/techtrans2/multylabelseg/Pascal-part/  # dataset root dir
+train: train/images  # train images (relative to 'path') 128 images
+val: val/images  # val images (relative to 'path') 128 images
+test:  # test images (optional)
+
+
+hierarchy:
+  body:
+    upper_body: !!python/tuple
+    - 1
+    - 6
+    - 2
+    - 4
+    lower_body: !!python/tuple
+    - 3
+    - 5

@@ -1,0 +1,11 @@
+torch
+albumentations
+torchmetrics==1.6.1
+numpy
+opencv-python
+onnxsim
+onnx
+PyYAML
+segmentation_models_pytorch
+tqdm
+matplotlib
